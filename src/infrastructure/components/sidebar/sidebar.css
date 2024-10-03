@@ -1,0 +1,18 @@
+.sidebar {
+    height: 100vh;
+}
+
+.menu-separator {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+}
+
+.navbar-link {
+    color: white;
+}
+
+.navbar-link:hover {
+    color: white;
+    font-weight: 800;
+}
