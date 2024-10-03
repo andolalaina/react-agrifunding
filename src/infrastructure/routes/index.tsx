@@ -12,7 +12,7 @@ export const MainRoutes = () => {
             <Routes>
                 <Route path="/" element={<AppScreen />}>
                     <Route path="" element={<DashboardScreen />}></Route>
-                    <Route path="all-projects" element={<ProjectListScreen />}></Route>
+                    <Route path="projects" element={<ProjectListScreen />}></Route>
                     <Route path="submit-project" element={<SubmitProjectScreen />}></Route>
                     <Route path="settings" element={<SettingScreen />}></Route>
                 </Route>

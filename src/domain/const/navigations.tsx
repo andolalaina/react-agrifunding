@@ -18,7 +18,7 @@ const _texts = texts["FR"]
     {
         id: "all-projects",
         title: _texts.navigations["all-projects"],
-        url: "/all-projects",
+        url: "/projects",
         resource: "projects.read",
         icon: () => <TableRowsIcon />
     },
