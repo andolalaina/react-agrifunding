@@ -16,11 +16,12 @@ export const DashboardScreen = () => {
     const columns: GridColDef[] = [
         { field: 'id', headerName: 'ID', width: 10 },
         { field: 'title', headerName: 'Nom du projet', width: 130 },
+        { field: 'owner', headerName: 'Porteur du projet', width: 130 },
         { field: 'description', headerName: 'Description', width: 130 },
-        { field: 'creationDate', headerName: 'Date de création', valueFormatter: formatDate, width: 130 },
+        { field: 'submissionDate', headerName: 'Date de création', valueFormatter: formatDate, width: 130 },
         { field: 'targetDate', headerName: 'Fin du financement', valueFormatter: formatDate, width: 130 },
-        { field: 'targetAmount', headerName: 'Objectif de financement', valueFormatter: formatCurrency, width: 130 },
-        { field: 'actualAmount', headerName: 'Financement actuel', valueFormatter: formatCurrency, width: 130 },
+        { field: 'fundTarget', headerName: 'Objectif de financement', valueFormatter: formatCurrency, width: 130 },
+        { field: 'fundActual', headerName: 'Financement actuel', valueFormatter: formatCurrency, width: 130 },
         { field: 'status', headerName: 'Etat', width: 130 }
     ];
 

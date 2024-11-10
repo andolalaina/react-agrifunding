@@ -4,6 +4,8 @@
   font-weight: 400;
 }
 
+#map { height: 180px; }
+
 a {
   font-weight: 500;
   color: black;
