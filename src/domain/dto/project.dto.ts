@@ -2,6 +2,7 @@ export interface ProjectListItemDTO {
     id: string
     title: string
     description: string
+    summary: string
     rating: number
     owner: OwnerDetailDTO
     submissionDate: Date

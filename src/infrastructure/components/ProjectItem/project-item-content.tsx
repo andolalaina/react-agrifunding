@@ -36,7 +36,7 @@ export const ProjectItemContent = ({ data } : Props) => {
                     <LinearProgress variant="determinate" value={80} />
                 </Box>
                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                {data.description}
+                {data.summary}
                 </Typography>
 
             </Grid>

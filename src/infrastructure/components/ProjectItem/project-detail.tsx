@@ -6,7 +6,7 @@ import { CustomLayerControl } from "../Map/layer-control"
 import { getProjectDetail } from "../../../domain/services/lendingProject.service"
 import Grid from "@mui/material/Grid2"
 import Item from "@mui/material/Box"
-import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia } from "@mui/material"
+import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Divider, Typography } from "@mui/material"
 import { ProjectItemContent } from "./project-item-content"
 
 
@@ -40,29 +40,9 @@ export const ProjectDetail = () => {
     return (
         <>
         <Grid container spacing={2}>
-            <Grid size={{ xs: 12, md: 6 }}>
+            <Grid size={{ xs: 12 }}>
             <Card>
                 <CardActionArea>
-                    <CardMedia
-                    component="img"
-                    // height="140"
-                    image="https://placehold.co/600x400"
-                    alt="green iguana"
-                    sx={{ maxHeight: "15rem" }}
-                    />
-                    <CardContent>
-                        <ProjectItemContent data={data} />
-                    </CardContent>
-                </CardActionArea>
-                <CardActions>
-                    <Button size="small" color="primary">
-                    Share
-                    </Button>
-                </CardActions>
-                </Card>
-            </Grid>
-            <Grid size={{ xs: 12, md: 6 }}>
-                <Item>
                 <MapContainer style={{"height": "500px"}} center={[data.location.lat, data.location.lng]} zoom={8} scrollWheelZoom={true}>
                     <CustomLayerControl layers={customLayersData} toggler={handleToggleLayer} />
                     { customLayersData.slice().reverse().filter((layer) => visibleLayers[layer.name]).map(layer => {
@@ -84,7 +64,20 @@ export const ProjectDetail = () => {
                         </Popup>
                     </Marker>
                 </MapContainer>
-                </Item>
+                    <CardContent>
+                        <ProjectItemContent data={data} />
+                        <Divider sx={{"marginBottom": "1rem", "marginTop": "1rem"}} />
+                        <Typography>
+                            {data.description}
+                        </Typography>
+                    </CardContent>
+                </CardActionArea>
+                <CardActions>
+                    <Button size="small" color="primary">
+                    Share
+                    </Button>
+                </CardActions>
+                </Card>
             </Grid>
         </Grid>
         </>
