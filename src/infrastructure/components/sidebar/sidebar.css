@@ -16,3 +16,15 @@
     color: white;
     font-weight: 800;
 }
+
+.sidebar-nav-text {
+    /* Styles for larger screens */
+    display: block;
+}
+
+/* Hide text on smaller screens (e.g., mobile) */
+@media (max-width: 768px) { /* Adjust 768px to your desired breakpoint */
+  .sidebar-nav-text {
+    display: none;
+  }
+}
