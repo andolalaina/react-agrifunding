@@ -22,9 +22,25 @@
     display: block;
 }
 
+.sidebar-nav-section {
+    display: block;
+    margin-left: .5rem !important;
+}
+
 /* Hide text on smaller screens (e.g., mobile) */
-@media (max-width: 768px) { /* Adjust 768px to your desired breakpoint */
-  .sidebar-nav-text {
-    display: none;
-  }
+@media (max-width: 600px) {
+    .sidebar-nav-section {
+        display: none;
+    }
+    .sidebar-nav-text {
+        display: none;
+    }
+    .sidebar-nav-icon {
+        min-width: 0 !important;
+    }
+    .sidebar-nav-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
 }
