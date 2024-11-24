@@ -2,9 +2,7 @@ export const SubmitProjectScreen = () => {
 
     return (
         <>
-        <h2>
-            Submit project
-        </h2>
+        <h2>Créer un nouveau projet</h2>
         </>
     )
 }

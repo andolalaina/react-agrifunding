@@ -2,9 +2,7 @@ export const SettingScreen = () => {
 
     return (
         <>
-        <h2>
-            Setting
-        </h2>
+        <h2>Paramètres</h2>
         </>
     )
 }

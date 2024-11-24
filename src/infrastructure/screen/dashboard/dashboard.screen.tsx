@@ -27,7 +27,7 @@ export const DashboardScreen = () => {
 
     return (
         <>
-        <h2>Dashboard</h2>
+        <h2>Tableau de bord</h2>
             <Paper sx={{ height: 400, width: '100%' }}>
                 <DataGrid
                     rows={rows}
