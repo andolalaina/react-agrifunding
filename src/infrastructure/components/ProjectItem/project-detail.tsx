@@ -67,7 +67,7 @@ export const ProjectDetail = () => {
                     <CardContent>
                         <ProjectItemContent data={data} />
                         <Divider sx={{"marginBottom": "1rem", "marginTop": "1rem"}} />
-                        <Typography>
+                        <Typography variant="body2">
                             {data.description}
                         </Typography>
                     </CardContent>
