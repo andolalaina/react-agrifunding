@@ -16,7 +16,7 @@ export const DashboardScreen = () => {
     const columns: GridColDef[] = [
         { field: 'id', headerName: 'ID', width: 10 },
         { field: 'title', headerName: 'Nom du projet', width: 130 },
-        { field: 'owner', headerName: 'Porteur du projet', width: 130 },
+        { field: 'owner', headerName: 'Porteur du projet', width: 130, valueGetter: (v: any) => v.name},
         { field: 'description', headerName: 'Description', width: 130 },
         { field: 'submissionDate', headerName: 'Date de création', valueFormatter: formatDate, width: 130 },
         { field: 'targetDate', headerName: 'Fin du financement', valueFormatter: formatDate, width: 130 },
