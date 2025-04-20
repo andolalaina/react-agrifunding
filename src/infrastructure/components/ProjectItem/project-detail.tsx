@@ -1,28 +1,28 @@
-import { Grid2 as Grid, Card, CardActionArea, CardContent, CardActions, Button, Divider, Typography } from "@mui/material"
+import { Grid2 as Grid, Card, CardActionArea, CardContent, CardActions, Button, Divider, Typography, colors } from "@mui/material"
 import { useParams } from "react-router"
 import { getProjectDetail } from "../../../domain/services/lendingProject.service"
 import { ProjectItemContent } from "./project-item-content"
 import { Map } from "../../components/Map"
+import { useEffect, useState } from "react"
+import { getAccessibilityIndexData, getPrecipitationDroughtIndexData } from "../../../domain/services/layers.service"
 
 export const ProjectDetail = () => {
     const { id } = useParams()
     const data = getProjectDetail(id!)
-    const customLayersData = [
-        {
-            url: "https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.jpg",
-            name: "stadia",
-            colors: ['#FF0000', '#00FF00', '#0000FF'],
-            labels: ['Low', 'Medium', 'High'],
-            isActive: false
-        },
-        {
-            url: "https://tile.thunderforest.com/landscape/{z}/{x}/{y}.png",
-            name: "forest",
-            colors: ["#FF0000", "#00FFFF", "#0000FF"],
-            labels: ["Low", "Medium", "High"],
-            isActive: false
-        },
-    ]
+    const [ customLayers, setCustomLayers ] = useState<any>([])
+
+    useEffect(() => {
+        Promise.all([
+            getPrecipitationDroughtIndexData(data.location.lat, data.location.lng),
+            getAccessibilityIndexData(data.location.lat, data.location.lng)
+        ])
+        .then(([precipitationData, accessibilityData]) => {
+            setCustomLayers([precipitationData, accessibilityData]);
+        })
+        .catch((error) => {
+            console.error("Error fetching layer data:", error);
+        });
+    }, [])
 
     return (
         <>
@@ -36,7 +36,7 @@ export const ProjectDetail = () => {
                     zoom={8}
                     markerPosition={[data.location.lat, data.location.lng]}
                     markerPopup="A pretty CSS3 popup. <br /> Easily customizable."
-                    customLayers={customLayersData}
+                    customLayers={customLayers}
                     height="500px"
                 />
                     <CardContent>
