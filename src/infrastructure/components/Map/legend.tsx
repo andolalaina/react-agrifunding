@@ -1,39 +1,100 @@
 
 
 type LegendProps = {
-    title: string
-    colors: string[]
-    labels: string[]
+    title: string;
+    colors: string[];
+    labels: string[];
 }
 
-export const Legend = ({ title, colors, labels } : LegendProps) => {
+export const DiscreteLegend = ({ title, colors, labels } : LegendProps) => {
     return (
-        <div className="leaflet-bottom leaflet-left">
-           <div className="leaflet-control leaflet-bar">
-           <div
-      style={{
-        backgroundColor: "white",
-        padding: "10px",
-        borderRadius: "8px",
-        fontSize: "14px",
-      }}
-    >
-      <h4>{title}</h4>
-        {colors.map((color, index) => (
-            <div style={{ display: "flex", alignItems: "center", marginBottom: "8px" }}>
-                <div
+    <div className="leaflet-bottom leaflet-left">
+        <div className="leaflet-control leaflet-bar">
+            <div
                 style={{
-                    width: "18px",
-                    height: "18px",
-                    backgroundColor: color,
-                    marginRight: "8px",
+                    backgroundColor: "white",
+                    padding: "10px",
+                    borderRadius: "8px",
+                    fontSize: "14px",
+                    width: "10rem",
+                    height: "10rem"
                 }}
-                ></div>
-                {labels[index]}
+            >
+                <h4>{title}</h4>
+                    {colors.map((color, index) => (
+                        <div style={{ display: "flex", alignItems: "center", marginBottom: "8px" }}>
+                            <div
+                            style={{
+                                width: "18px",
+                                height: "18px",
+                                backgroundColor: color,
+                                marginRight: "8px",
+                            }}
+                            ></div>
+                            {labels[index]}
+                        </div>
+                    ))}
             </div>
-        ))}
-    </div>
-           </div>
         </div>
+    </div>
     )
 }
+
+export const ContinuousLegend = ({ title, labels, colors }: LegendProps) => {
+    const gradient = `linear-gradient(to right, ${colors.join(", ")})`;
+
+    return (
+        <div className="leaflet-bottom leaflet-left">
+            <div className="leaflet-control leaflet-bar">
+                <div
+                    style={{
+                        backgroundColor: "white",
+                        padding: "10px",
+                        borderRadius: "8px",
+                        fontSize: "14px",
+                        width: "10rem",
+                        height: "10rem"
+                    }}
+                >
+                    <h4>{title}</h4>
+                    <div style={{ display: "flex", flexFlow: "column", alignItems: "center" }}>
+                        <div
+                            style={{
+                                height: "1.5rem",
+                                width: "100%",
+                                backgroundImage: gradient,
+                                borderRadius: "4px",
+                            }}
+                        ></div>
+                        <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
+                            {labels.map((label, index) => (
+                                <span key={index} style={{ margin: "0 4px" }}>
+                                    {label}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export const Legend = (props: LegendProps) => {
+    function getLegendType(props: LegendProps) {
+        if (props.colors.length === props.labels.length) {
+            return "discrete";
+        }
+        return "continuous";
+    }
+    const legendType = getLegendType(props);
+
+    if (legendType === "discrete") {
+        const { title, colors, labels } = props;
+        return <DiscreteLegend title={title} colors={colors} labels={labels} />;
+    } else if (legendType === "continuous") {
+        const { title, labels, colors } = props;
+        return <ContinuousLegend title={title} labels={labels} colors={colors} />;
+    }
+    return null;
+};
