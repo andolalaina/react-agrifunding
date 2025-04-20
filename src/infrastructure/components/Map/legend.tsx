@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 
 
 type LegendProps = {
@@ -13,14 +14,14 @@ export const DiscreteLegend = ({ title, colors, labels } : LegendProps) => {
             <div
                 style={{
                     backgroundColor: "white",
-                    padding: "10px",
+                    padding: "1.5rem",
                     borderRadius: "8px",
                     fontSize: "14px",
                     width: "10rem",
-                    height: "10rem"
+                    // height: "10rem"
                 }}
             >
-                <h4>{title}</h4>
+                <Typography variant="h6" mb="1rem">{title}</Typography>
                     {colors.map((color, index) => (
                         <div style={{ display: "flex", alignItems: "center", marginBottom: "8px" }}>
                             <div
@@ -49,14 +50,14 @@ export const ContinuousLegend = ({ title, labels, colors }: LegendProps) => {
                 <div
                     style={{
                         backgroundColor: "white",
-                        padding: "10px",
+                        padding: "1.5rem",
                         borderRadius: "8px",
                         fontSize: "14px",
-                        width: "10rem",
-                        height: "10rem"
+                        minWidth: "10rem",
+                        // height: "10rem"
                     }}
                 >
-                    <h4>{title}</h4>
+                    <Typography variant="h6" mb="1rem">{title}</Typography>
                     <div style={{ display: "flex", flexFlow: "column", alignItems: "center" }}>
                         <div
                             style={{
