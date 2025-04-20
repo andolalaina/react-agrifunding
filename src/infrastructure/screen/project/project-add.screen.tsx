@@ -88,146 +88,146 @@ export const SubmitProjectScreen = () => {
     <Grid container spacing={2}>
       
       <Grid item xs={12} p={2} sx={{ width: "100%" }}>
-      <FormGroup onSubmit={handleSubmit} sx={{width: "100%"}}>
-        <Box sx={{ mb: 2 }}>
-          <TextField
-            label="Latitude"
-            type="number"
-            name="location.lat"
-            value={formData.location.lat}
-            onChange={handleChange}
-            fullWidth
-          />
-        </Box>
-        <Box sx={{ mb: 2 }}>
-          <TextField
-            label="Longitude"
-            type="number"
-            name="location.lng"
-            value={formData.location.lng}
-            onChange={handleChange}
-            fullWidth
-          />
-        </Box>
-        <Box sx={{ mb: 2, height: '400px' }}>
-          <Typography variant="subtitle1" gutterBottom>
-            Select Location on Map
-          </Typography>
-          <MapContainer
-            center={[formData.location.lat || -18.9137 , formData.location.lng || 47.5361]}
-            zoom={6}
-            style={{ height: '20rem', width: '100%' }}
-          >
-            <TileLayer
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        <FormGroup onSubmit={handleSubmit} sx={{width: "100%"}}>
+          <Box sx={{ mb: 2 }}>
+            <TextField
+              label="Latitude"
+              type="number"
+              name="location.lat"
+              value={formData.location.lat}
+              onChange={handleChange}
+              fullWidth
             />
-            <Marker position={[formData.location.lat, formData.location.lng]} />
-            <LocationPicker setLocation={handleLocationChange} />
-          </MapContainer>
-        </Box>
-        <Box sx={{ my: 2 }}>
-          <TextField
-            label="Titre du projet"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-            fullWidth
-            error={!!errors.title}
-            helperText={errors.title}
-          />
-        </Box>
-        <Box sx={{ mb: 2 }}>
-          <TextField
-            label="Description des activités"
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            fullWidth
-            multiline
-            rows={4}
-            error={!!errors.description}
-            helperText={errors.description}
-          />
-        </Box>
-        <Box sx={{ mb: 2 }}>
-          <TextField
-            label="Description courte du projet"
-            name="summary"
-            value={formData.summary}
-            onChange={handleChange}
-            fullWidth
-          />
-        </Box>
-        <Box sx={{ mb: 2 }}>
-          <TextField
-            label="Porteur du projet"
-            name="owner.name"
-            value={formData.owner.name}
-            onChange={handleChange}
-            fullWidth
-          />
-        </Box>
-        <Box sx={{ mb: 2 }}>
-          <TextField
-            label="Métier du porteur"
-            name="owner.job"
-            value={formData.owner.job}
-            onChange={handleChange}
-            fullWidth
-          />
-        </Box>
-        <Box sx={{ mb: 2 }}>
-          <TextField
-            label="Date de soumission"
-            type="date"
-            InputLabelProps={{ shrink: true }}
-            name="submissionDate"
-            value={formData.submissionDate.toISOString().slice(0, 10)}
-            fullWidth
-            InputProps={{ readOnly: true }}
-          />
-        </Box>
-        <Box sx={{ mb: 2 }}>
-          <TextField
-            label="Date de commencement des travaux"
-            type="date"
-            InputLabelProps={{ shrink: true }}
-            name="targetDate"
-            value={formData.targetDate.toISOString().slice(0, 10)}
-            onChange={(e) => handleDateChange('targetDate', new Date(e.target.value))}
-            fullWidth
-            inputProps={{ min: new Date().toISOString().slice(0, 10) }}
-          />
-        </Box>
-        <Box sx={{ mb: 2 }}>
-          <TextField
-            label="Financement actuel"
-            type="number"
-            name="fundActual"
-            value={formData.fundActual}
-            onChange={handleChange}
-            fullWidth
-            error={!!errors.fundActual}
-            helperText={errors.fundActual}
-          />
-        </Box>
-        <Box sx={{ mb: 2 }}>
-          <TextField
-            label="Financement cible"
-            type="number"
-            name="fundTarget"
-            value={formData.fundTarget}
-            onChange={handleChange}
-            fullWidth
-            error={!!errors.fundTarget}
-            helperText={errors.fundTarget}
-          />
-        </Box>
-        <Button variant="contained" type="submit">
-          Soumettre le projet
-        </Button>
-      </FormGroup>
+          </Box>
+          <Box sx={{ mb: 2 }}>
+            <TextField
+              label="Longitude"
+              type="number"
+              name="location.lng"
+              value={formData.location.lng}
+              onChange={handleChange}
+              fullWidth
+            />
+          </Box>
+          <Box sx={{ mb: 2, height: '400px' }}>
+            <Typography variant="subtitle1" gutterBottom>
+              Select Location on Map
+            </Typography>
+            <MapContainer
+              center={[formData.location.lat || -18.9137 , formData.location.lng || 47.5361]}
+              zoom={6}
+              style={{ height: '20rem', width: '100%' }}
+            >
+              <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              />
+              <Marker position={[formData.location.lat, formData.location.lng]} />
+              <LocationPicker setLocation={handleLocationChange} />
+            </MapContainer>
+          </Box>
+          <Box sx={{ my: 2 }}>
+            <TextField
+              label="Titre du projet"
+              name="title"
+              value={formData.title}
+              onChange={handleChange}
+              fullWidth
+              error={!!errors.title}
+              helperText={errors.title}
+            />
+          </Box>
+          <Box sx={{ mb: 2 }}>
+            <TextField
+              label="Description des activités"
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+              fullWidth
+              multiline
+              rows={4}
+              error={!!errors.description}
+              helperText={errors.description}
+            />
+          </Box>
+          <Box sx={{ mb: 2 }}>
+            <TextField
+              label="Description courte du projet"
+              name="summary"
+              value={formData.summary}
+              onChange={handleChange}
+              fullWidth
+            />
+          </Box>
+          <Box sx={{ mb: 2 }}>
+            <TextField
+              label="Porteur du projet"
+              name="owner.name"
+              value={formData.owner.name}
+              onChange={handleChange}
+              fullWidth
+            />
+          </Box>
+          <Box sx={{ mb: 2 }}>
+            <TextField
+              label="Métier du porteur"
+              name="owner.job"
+              value={formData.owner.job}
+              onChange={handleChange}
+              fullWidth
+            />
+          </Box>
+          <Box sx={{ mb: 2 }}>
+            <TextField
+              label="Date de soumission"
+              type="date"
+              InputLabelProps={{ shrink: true }}
+              name="submissionDate"
+              value={formData.submissionDate.toISOString().slice(0, 10)}
+              fullWidth
+              InputProps={{ readOnly: true }}
+            />
+          </Box>
+          <Box sx={{ mb: 2 }}>
+            <TextField
+              label="Date de commencement des travaux"
+              type="date"
+              InputLabelProps={{ shrink: true }}
+              name="targetDate"
+              value={formData.targetDate.toISOString().slice(0, 10)}
+              onChange={(e) => handleDateChange('targetDate', new Date(e.target.value))}
+              fullWidth
+              inputProps={{ min: new Date().toISOString().slice(0, 10) }}
+            />
+          </Box>
+          <Box sx={{ mb: 2 }}>
+            <TextField
+              label="Financement actuel"
+              type="number"
+              name="fundActual"
+              value={formData.fundActual}
+              onChange={handleChange}
+              fullWidth
+              error={!!errors.fundActual}
+              helperText={errors.fundActual}
+            />
+          </Box>
+          <Box sx={{ mb: 2 }}>
+            <TextField
+              label="Financement cible"
+              type="number"
+              name="fundTarget"
+              value={formData.fundTarget}
+              onChange={handleChange}
+              fullWidth
+              error={!!errors.fundTarget}
+              helperText={errors.fundTarget}
+            />
+          </Box>
+          <Button variant="contained" type="submit">
+            Soumettre le projet
+          </Button>
+        </FormGroup>
       </Grid>
       
     </Grid>
