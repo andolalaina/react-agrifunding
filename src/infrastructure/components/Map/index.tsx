@@ -19,19 +19,20 @@ interface MapProps {
     zoom?: number
     markerPosition?: [number, number]
     markerPopup?: string
-    customLayers: Array<{
+    customLayers?: Array<{
         name: string
         url: string
         colors: string[]
         labels: string[]
         isActive?: boolean
     }>
+    geojsonLayer?: any
     height?: string
 }
 
-export const Map = ({center, zoom, markerPosition, markerPopup, customLayers, height } : MapProps) => {
+export const Map = ({center, zoom, markerPosition, markerPopup, customLayers, geojsonLayer, height } : MapProps) => {
   const [visibleLayers, setVisibleLayers] = useState<any>(
-    customLayers.reduce((acc, layer) => ({ ...acc, [layer.name]: layer.isActive || false }), {})
+    customLayers?.reduce((acc, layer) => ({ ...acc, [layer.name]: layer.isActive || false }), {})
   );
 
   const handleToggleLayer = (name: any) => {
@@ -40,11 +41,11 @@ export const Map = ({center, zoom, markerPosition, markerPopup, customLayers, he
 
   return (
     <MapContainer style={{ height }} center={center} zoom={zoom} scrollWheelZoom={true}>
-      {customLayers.length > 0 && (
+      {customLayers && customLayers.length > 0 && (
         <CustomLayerControl layers={customLayers} toggler={handleToggleLayer} />
       )}
       
-      {customLayers.slice().reverse().filter((layer) => visibleLayers[layer.name]).map((layer, index) => (
+      {customLayers?.slice().reverse().filter((layer) => visibleLayers[layer.name]).map((layer, index) => (
         <div key={`layer-${layer.name}-${index}`}>
           <TileLayer url={layer.url} />
           <Legend title={layer.name} colors={layer.colors} labels={layer.labels} />
@@ -64,6 +65,15 @@ export const Map = ({center, zoom, markerPosition, markerPopup, customLayers, he
           <Popup>{markerPopup}</Popup>
         </Marker>
       )}
+
+      {geojsonLayer && geojsonLayer.features.map((feature: any) => {
+        return (
+        <Marker position={[feature.geometry.coordinates[1], feature.geometry.coordinates[0]]}>
+            <Popup>{markerPopup}</Popup>
+          </Marker>
+        )
+      })}
+
     </MapContainer>
   )
 }

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { TextField, Button, Typography, Container, Box, FormControl, FormHelperText, Select, MenuItem, FormGroup } from '@mui/material';
+import { TextField, Button, Typography, Box, FormGroup } from '@mui/material';
 import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Grid2 as Grid } from '@mui/material';
@@ -87,7 +87,7 @@ export const SubmitProjectScreen = () => {
       <h2>Soumettre un nouveau projet</h2>
     <Grid container spacing={2}>
       
-      <Grid item xs={12} p={2} sx={{ width: "100%" }}>
+      {/* <Grid item xs={12} p={2} sx={{ width: "100%" }}> */}
         <FormGroup onSubmit={handleSubmit} sx={{width: "100%"}}>
           <Box sx={{ mb: 2 }}>
             <TextField
@@ -111,7 +111,7 @@ export const SubmitProjectScreen = () => {
           </Box>
           <Box sx={{ mb: 2, height: '400px' }}>
             <Typography variant="subtitle1" gutterBottom>
-              Select Location on Map
+              Cliquez sur la carte pour sélectionner l'emplacement du projet
             </Typography>
             <MapContainer
               center={[formData.location.lat || -18.9137 , formData.location.lng || 47.5361]}
@@ -119,8 +119,10 @@ export const SubmitProjectScreen = () => {
               style={{ height: '20rem', width: '100%' }}
             >
               <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url='https://tiles.stadiamaps.com/tiles/alidade_satellite/{z}/{x}/{y}{r}.jpg'
+                minZoom= {0}
+                maxZoom= {18}
+                // attribution= '&copy; CNES, Distribution Airbus DS, © Airbus DS, © PlanetObserver (Contains Copernicus Data) | &copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               />
               <Marker position={[formData.location.lat, formData.location.lng]} />
               <LocationPicker setLocation={handleLocationChange} />
@@ -152,7 +154,7 @@ export const SubmitProjectScreen = () => {
           </Box>
           <Box sx={{ mb: 2 }}>
             <TextField
-              label="Description courte du projet"
+              label="Objectif du projet"
               name="summary"
               value={formData.summary}
               onChange={handleChange}
@@ -228,7 +230,7 @@ export const SubmitProjectScreen = () => {
             Soumettre le projet
           </Button>
         </FormGroup>
-      </Grid>
+      {/* </Grid> */}
       
     </Grid>
     </>

@@ -16,3 +16,12 @@ export const formatDate = (date: Date) => {
         dateStyle: "medium"
     }).format(date)
 }
+
+export const formatStatus = (status: string) => {
+    const statusMap: Record<string, string> = {
+        "Pending": "En attente",
+        "In Progress": "En cours",
+        "Completed": "Terminé"
+    }
+    return statusMap[status] || status
+}

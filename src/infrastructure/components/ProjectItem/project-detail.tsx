@@ -1,4 +1,4 @@
-import { Grid2 as Grid, Card, CardActionArea, CardContent, CardActions, Button, Divider, Typography, colors } from "@mui/material"
+import { Grid2 as Grid, Card, CardActionArea, CardContent, CardActions, Button, Divider, Typography } from "@mui/material"
 import { useParams } from "react-router"
 import { getProjectDetail } from "../../../domain/services/lendingProject.service"
 import { ProjectItemContent } from "./project-item-content"

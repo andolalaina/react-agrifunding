@@ -1,9 +1,8 @@
-import { Box, Button, IconButton, LinearProgress, Rating, Typography } from "@mui/material"
+import { Box, Button, LinearProgress, Rating, Typography } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 import PersonIcon from '@mui/icons-material/Person';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates';
-import TipsAndUpdatesOutlinedIcon from '@mui/icons-material/TipsAndUpdatesOutlined';
 import { formatCurrency, formatDate } from "../../../utils/formatter";
 import { ProjectListItemDTO } from "../../../domain/dto/project.dto";
 import ReportModal from "./project-item-report";
