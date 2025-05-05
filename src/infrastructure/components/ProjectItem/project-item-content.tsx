@@ -57,7 +57,7 @@ export const ProjectItemContent = ({ data } : Props) => {
                 <Box sx={{ marginBottom: "1rem" }}>
                     <Box sx={{ display: "flex", alignItems: "center", color: "text.secondary" }}>
                         <PersonIcon fontSize="small" sx={{ marginRight: ".3rem" }}/>
-                        <Typography variant="caption">{data.owner.name} - {data.owner.job}</Typography>
+                        <Typography variant="caption">{data.owner_name} - {data.owner_job}</Typography>
                     </Box>
                     <Box sx={{ display: "flex", alignItems: "center", color: "text.secondary" }}>
                         <CalendarTodayIcon fontSize="small" sx={{ marginRight: ".3rem" }} />

@@ -4,7 +4,8 @@ export interface ProjectListItemDTO {
     description: string
     summary: string
     rating: number
-    owner: OwnerDetailDTO
+    owner_name: string
+    owner_job: string
     submissionDate: Date
     targetDate: Date
     fundActual : number

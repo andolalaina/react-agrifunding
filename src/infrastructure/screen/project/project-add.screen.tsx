@@ -23,7 +23,8 @@ export const SubmitProjectScreen = () => {
     description: '',
     summary: '',
     rating: 0,
-    owner: { name: '', job: '' },
+    owner_name: '',
+    owner_job: '',
     submissionDate: new Date(),
     targetDate: new Date(),
     fundActual: 0,
@@ -71,7 +72,8 @@ export const SubmitProjectScreen = () => {
       description: '',
       summary: '',
       rating: 0,
-      owner: { name: '', job: '' },
+      owner_name: '',
+      owner_job: '',
       submissionDate: new Date(),
       targetDate: new Date(),
       fundActual: 0,
@@ -165,7 +167,7 @@ export const SubmitProjectScreen = () => {
             <TextField
               label="Porteur du projet"
               name="owner.name"
-              value={formData.owner.name}
+              value={formData.owner_name}
               onChange={handleChange}
               fullWidth
             />
@@ -174,7 +176,7 @@ export const SubmitProjectScreen = () => {
             <TextField
               label="Métier du porteur"
               name="owner.job"
-              value={formData.owner.job}
+              value={formData.owner_job}
               onChange={handleChange}
               fullWidth
             />
