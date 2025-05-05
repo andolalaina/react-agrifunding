@@ -22,7 +22,6 @@ interface ReportModalProps {
   data: ReportData;
 }
 
-
 const ReportModal: React.FC<ReportModalProps> = ({ open, handleClose, data }) => {
   const {
     title,
@@ -32,7 +31,6 @@ const ReportModal: React.FC<ReportModalProps> = ({ open, handleClose, data }) =>
     score,
     scoreComment,
   } = data; // Use sampleData for demonstration
-
   return (
     <Modal open={open} onClose={handleClose}>
       <Box
@@ -56,13 +54,12 @@ const ReportModal: React.FC<ReportModalProps> = ({ open, handleClose, data }) =>
 
         <Typography variant="subtitle1" fontWeight="bold">🌧️ Hydrologie (SPEI)</Typography>
         <Typography variant="body2" paragraph>
-          L’indice SPEI est à {spei.toFixed(4)} sur 48 mois, indiquant {spei < -0.5 ? 'une légère sécheresse chronique' : 'des conditions hydriques acceptables'}.
+          {spei}
         </Typography>
 
         <Typography variant="subtitle1" fontWeight="bold">🚜 Accessibilité</Typography>
         <Typography variant="body2" paragraph>
-          L’indice d’accessibilité est de {accessibility.toFixed(3)}. 
-          Cela représente un niveau {accessibility >= 0.5 ? 'favorable' : 'limité'} pour les opérations logistiques.
+          {accessibility}
         </Typography>
 
         <Typography variant="subtitle1" fontWeight="bold">✅ Recommandations</Typography>

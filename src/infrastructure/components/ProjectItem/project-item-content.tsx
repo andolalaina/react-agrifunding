@@ -1,4 +1,4 @@
-import { Box, Button, LinearProgress, Rating, Typography } from "@mui/material"
+import { Box, Button, CircularProgress, LinearProgress, Rating, Typography } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 import PersonIcon from '@mui/icons-material/Person';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
@@ -7,30 +7,36 @@ import { formatCurrency, formatDate } from "../../../utils/formatter";
 import { ProjectListItemDTO } from "../../../domain/dto/project.dto";
 import ReportModal from "./project-item-report";
 import { useState } from "react";
+import { getProjectRecommandations } from "../../../domain/services/lendingProject.service";
 
 type Props = {
     data: ProjectListItemDTO
 }
 
-const sampleData: any = {
-    title: 'Analyse de faisabilité - Plantation de vanille',
-    spei: -0.7458,
-    accessibility: 0.552,
-    recommendations: [
-      'Prévoir un système d’irrigation adapté.',
-      'Installer un ombrage artificiel ou naturel.',
-      'Faire une étude de sol avant plantation.'
-    ],
-    score: 3.5,
-    scoreComment: 'Projet faisable avec précautions hydriques.'
-  };
-
 export const ProjectItemContent = ({ data } : Props) => {
     const [open, setOpen] = useState(false);
+    const [recommandations, setRecommandations] = useState<any>(undefined)
+    const [loading, setLoading] = useState(false)
+
+    const handleAIOpen = () => {
+        setLoading(true)
+        getProjectRecommandations(data.id).then((recData) => {
+            setRecommandations({
+                title: data.title,
+                spei: recData.drought_data_interpretation,
+                accessibility: recData.zone_accessibility_interpretation,
+                recommendations: recData.agricultural_advices,
+                score: recData.pertinence.note,
+                scoreComment: recData.pertinence.comment
+            })
+            setOpen(true)
+            setLoading(false)
+        })
+    }
 
     return (
         <Grid container>
-            <ReportModal open={open} handleClose={() => setOpen(false)} data={sampleData} />
+            {recommandations !== undefined && (<ReportModal open={open} handleClose={() => setOpen(false)} data={recommandations} />)}
             <Grid size={{ xs: 12 }}>
                 <Typography gutterBottom variant="h5" component="div">
                     {data.title}
@@ -47,9 +53,9 @@ export const ProjectItemContent = ({ data } : Props) => {
                             variant="outlined"
                             aria-label="view AI recommandations" 
                             startIcon={<TipsAndUpdatesIcon fontSize="small" />}
-                            onClick={() => setOpen(true)}
+                            onClick={() => handleAIOpen()}
                         >
-                            Evaluations IA
+                            {loading ? <CircularProgress size="20px"/> : "Evaluations IA"}
                         </Button>
                     </Grid>
                 </Grid>

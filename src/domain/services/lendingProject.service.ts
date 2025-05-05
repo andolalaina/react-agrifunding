@@ -3,6 +3,11 @@ import { ProjectCreateDTO } from "../dto/project.dto";
 import axiosInstance from "./axios.service";
 
 
+export const getProjectRecommandations = async (id: string) => {
+    const recommandations = (await axiosInstance.post('/AI/evaluate?item_id='+id)).data
+    return recommandations
+}
+
 export const getLendingProjects =async (page : number = 0, size : number = 2) => {
     const startIndex = (page) * size;
     const endIndex = ((page) * size) + size;
