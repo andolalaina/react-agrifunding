@@ -11,10 +11,12 @@ export const formatCompact = (amount: number) => {
     }).format(amount)
 }
 
-export const formatDate = (date: Date) => {
+export const formatDate = (date: Date | string) => {
+    console.log(date)
+    const dateObject = typeof date === 'string' ? new Date(date) : date;
     return Intl.DateTimeFormat('fr-FR', {
         dateStyle: "medium"
-    }).format(date)
+    }).format(dateObject)
 }
 
 export const formatStatus = (status: string) => {

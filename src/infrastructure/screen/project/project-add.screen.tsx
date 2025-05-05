@@ -5,7 +5,8 @@ import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Grid2 as Grid } from '@mui/material';
 
-import { ProjectDetailDTO } from '../../../domain/dto/project.dto';
+import { ProjectCreateDTO, ProjectDetailDTO } from '../../../domain/dto/project.dto';
+import { insertLendingProject } from '../../../domain/services/lendingProject.service';
 
 const LocationPicker = ({ setLocation }: { setLocation: (lat: number, lng: number) => void }) => {
   useMapEvents({
@@ -17,15 +18,13 @@ const LocationPicker = ({ setLocation }: { setLocation: (lat: number, lng: numbe
 };
 
 export const SubmitProjectScreen = () => {
-  const [formData, setFormData] = useState<ProjectDetailDTO>({
+  const [formData, setFormData] = useState<ProjectCreateDTO>({
     id: '',
     title: '',
     description: '',
     summary: '',
     rating: 0,
-    owner_name: '',
-    owner_job: '',
-    submissionDate: new Date(),
+    submission_date: new Date(),
     targetDate: new Date(),
     fundActual: 0,
     fundTarget: 0,
@@ -66,22 +65,24 @@ export const SubmitProjectScreen = () => {
 
     // TODO: Implement actual form submission here. This is a placeholder.
     console.log('Form submitted:', formData);
-    setFormData({
-      id: '',
-      title: '',
-      description: '',
-      summary: '',
-      rating: 0,
-      owner_name: '',
-      owner_job: '',
-      submissionDate: new Date(),
-      targetDate: new Date(),
-      fundActual: 0,
-      fundTarget: 0,
-      status: '',
-      location: { lat: -18.9137, lng: 47.5361 },
-    });
-    setErrors({});
+    insertLendingProject(formData)
+      .then((response) => {
+        console.log(response)
+        setFormData({
+          id: '',
+          title: '',
+          description: '',
+          summary: '',
+          rating: 0,
+          submission_date: new Date(),
+          targetDate: new Date(),
+          fundActual: 0,
+          fundTarget: 0,
+          status: '',
+          location: { lat: -18.9137, lng: 47.5361 },
+        });
+        setErrors({});
+    })
   };
 
   return (
@@ -90,7 +91,8 @@ export const SubmitProjectScreen = () => {
     <Grid container spacing={2}>
       
       {/* <Grid item xs={12} p={2} sx={{ width: "100%" }}> */}
-        <FormGroup onSubmit={handleSubmit} sx={{width: "100%"}}>
+      <form onSubmit={handleSubmit}>
+        <FormGroup sx={{width: "100%"}}>
           <Box sx={{ mb: 2 }}>
             <TextField
               label="Latitude"
@@ -165,29 +167,11 @@ export const SubmitProjectScreen = () => {
           </Box>
           <Box sx={{ mb: 2 }}>
             <TextField
-              label="Porteur du projet"
-              name="owner.name"
-              value={formData.owner_name}
-              onChange={handleChange}
-              fullWidth
-            />
-          </Box>
-          <Box sx={{ mb: 2 }}>
-            <TextField
-              label="Métier du porteur"
-              name="owner.job"
-              value={formData.owner_job}
-              onChange={handleChange}
-              fullWidth
-            />
-          </Box>
-          <Box sx={{ mb: 2 }}>
-            <TextField
               label="Date de soumission"
               type="date"
               InputLabelProps={{ shrink: true }}
               name="submissionDate"
-              value={formData.submissionDate.toISOString().slice(0, 10)}
+              value={formData.submission_date.toISOString().slice(0, 10)}
               fullWidth
               InputProps={{ readOnly: true }}
             />
@@ -232,6 +216,7 @@ export const SubmitProjectScreen = () => {
             Soumettre le projet
           </Button>
         </FormGroup>
+      </form>
       {/* </Grid> */}
       
     </Grid>

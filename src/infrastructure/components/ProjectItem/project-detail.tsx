@@ -8,8 +8,18 @@ import { getAccessibilityIndexData, getPrecipitationDroughtIndexData } from "../
 
 export const ProjectDetail = () => {
     const { id } = useParams()
-    const data = getProjectDetail(id!)
+    
+    const [ data, setData ] = useState<any>({location: {lat: -18.9137, lng: 47.5361}})
     const [ customLayers, setCustomLayers ] = useState<any>([])
+    
+    useEffect(() => {
+        getProjectDetail(id!).then((data) => {
+            setData({...data, location: {lat: data.latitude, lng: data.longitude}})
+        }
+        ).catch((error) => {
+            console.error("Error fetching project detail:", error);
+        })
+    }, [id])
 
     useEffect(() => {
         Promise.all([
@@ -22,7 +32,7 @@ export const ProjectDetail = () => {
         .catch((error) => {
             console.error("Error fetching layer data:", error);
         });
-    }, [])
+    }, [data])
 
     return (
         <>
@@ -32,9 +42,9 @@ export const ProjectDetail = () => {
                 <CardActionArea>
                 {/* Using the new Map component */}
                 <Map 
-                    center={[data.location.lat, data.location.lng]}
+                    center={[data?.location?.lat, data?.location?.lng]}
                     zoom={8}
-                    markerPosition={[data.location.lat, data.location.lng]}
+                    markerPosition={[data?.location?.lat, data?.location?.lng]}
                     markerPopup="A pretty CSS3 popup. <br /> Easily customizable."
                     customLayers={customLayers}
                     height="500px"

@@ -6,10 +6,10 @@ export interface ProjectListItemDTO {
     rating: number
     owner_name: string
     owner_job: string
-    submissionDate: Date
+    submission_date: Date
     targetDate: Date
-    fundActual : number
-    fundTarget : number
+    fund_actual : number
+    fund_target : number
     status: string
 }
 
@@ -24,5 +24,19 @@ interface OwnerDetailDTO {
 }
 
 export interface ProjectDetailDTO extends ProjectListItemDTO {
+    location : GeoLocation
+}
+
+export interface ProjectCreateDTO {
+    id: string
+    title: string
+    description: string
+    summary: string
+    rating: number
+    submission_date: Date
+    targetDate: Date
+    fundActual : number
+    fundTarget : number
+    status: string
     location : GeoLocation
 }

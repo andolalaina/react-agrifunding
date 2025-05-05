@@ -61,12 +61,12 @@ export const ProjectItemContent = ({ data } : Props) => {
                     </Box>
                     <Box sx={{ display: "flex", alignItems: "center", color: "text.secondary" }}>
                         <CalendarTodayIcon fontSize="small" sx={{ marginRight: ".3rem" }} />
-                        <Typography variant="caption" sx={{ verticalAlign: "bottom" }}>{ formatDate(new Date(data.submissionDate)) }</Typography>
+                        <Typography variant="caption" sx={{ verticalAlign: "bottom" }}>{ formatDate(data.submission_date) }</Typography>
                     </Box>
                 </Box>
                 <Box sx={{ marginBottom: "1rem" }}>
                     <Typography variant="caption">
-                        { formatCurrency(data.fundActual) } sur { formatCurrency(data.fundTarget) }
+                        { formatCurrency(data.fund_actual) } sur { formatCurrency(data.fund_target) }
                     </Typography>
                     <LinearProgress variant="determinate" value={80} />
                 </Box>
