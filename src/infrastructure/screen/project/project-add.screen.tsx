@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { TextField, Button, Typography, Box, FormGroup } from '@mui/material';
+import { TextField, Button, Typography, Box, FormGroup, Container } from '@mui/material';
 import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Grid2 as Grid } from '@mui/material';
@@ -87,10 +87,10 @@ export const SubmitProjectScreen = () => {
 
   return (
     <>
-      <h2>Soumettre un nouveau projet</h2>
-    <Grid container spacing={2}>
+    <h2>Soumettre un nouveau projet</h2>
+    <Grid container spacing={2} sx={{ width: "100%" }}>
       
-      {/* <Grid item xs={12} p={2} sx={{ width: "100%" }}> */}
+      <Grid item xs={12} p={2} sx={{ width: "100%" }}>
       <form onSubmit={handleSubmit}>
         <FormGroup sx={{width: "100%"}}>
           <Box sx={{ mb: 2 }}>
@@ -217,7 +217,7 @@ export const SubmitProjectScreen = () => {
           </Button>
         </FormGroup>
       </form>
-      {/* </Grid> */}
+      </Grid>
       
     </Grid>
     </>
